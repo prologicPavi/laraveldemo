@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\{
+    User,
+    Post,
+    Category
+};
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +20,9 @@ class DatabaseSeeder extends Seeder
      
     public function run()
     {
-       // User::factory(10)->create();
-        //PostFactroy::factory(50)->create();
-
-        //Post::factory()->count(5)->create();
-
-        $this->call(ContactSeeder::class);
+      // User::factory(10)->create();   
+      // Post::factory(10)->create(); 
+       $this->call(ContactSeeder::class);
+      // Category::factory(10)->create();
     }
 }

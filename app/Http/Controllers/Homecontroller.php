@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\ {
     User,
     Contact,
-    Post
+    Post,
+    Category
 };
 
 class Homecontroller extends Controller
@@ -15,22 +16,38 @@ class Homecontroller extends Controller
     
     public function index() {
 
-       //$user = User::with('contact')->find(1);
-       //dd($user->toArray());
+      // $categories = Category::all();
+      
+      // $post = Post::with('categories')->first();
+      
+      // $post->categories()->detach(['1','2']);
 
-    //    $contact = Contact::with('user')->find(1);
+      // $post = Post::with('categories')->first();
 
-    //    return $contact;
+      // return $post;
+
+      $user = User::with('contactInfo')->find(1);
+
+      return $user;
+
+      //return $user->makeHidden(['password','remember_token'])->toJson();
+
+     // $contact = Contact::with('user')->find(1);
+
+     //return $contact->user;
 
 
 
-    //$user = User::with('posts')->find(1);
+   // $user = User::with('posts')->find(1);
     
-    //return $user;
+    //return $user->posts;
 
-    $post = Post::with('user')->find(1);
+    // $categories = Category::all();
 
-    return $post->user;
+    // $post = Post::first();
+    
+
+   // return $post;
 
     }
 }

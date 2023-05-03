@@ -6,7 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Models\ {
     User,
     Contact,
-    Post
+    Post,
+    ContactInformation
 };
 
 class ContactSeeder extends Seeder
@@ -30,7 +31,13 @@ class ContactSeeder extends Seeder
         //     'user_id' => 1
         // ]);
 
-        User::factory(10)->create();
-        Post::factory()->count(50)->create();
+        ContactInformation::create([
+            'pincode' => '234567543',
+            'landmark'=> 'backside of market',
+            'note' => 'Leave at doorstep',
+            'contact_id' =>1
+        ]);
+
+         
     }
 }
