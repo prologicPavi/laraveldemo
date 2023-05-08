@@ -10,6 +10,9 @@ use App\Models\ {
     Post,
     Category
 };
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class Homecontroller extends Controller
 {
@@ -26,9 +29,9 @@ class Homecontroller extends Controller
 
       // return $post;
 
-      $user = User::with('contactInfo')->find(1);
+      //$user = User::with('contactInfo')->find(1);
 
-      return $user;
+      //return $user;
 
       //return $user->makeHidden(['password','remember_token'])->toJson();
 
@@ -47,7 +50,45 @@ class Homecontroller extends Controller
     // $post = Post::first();
     
 
-   // return $post;
+    // return $post;
+
+      return view('user.create');
 
     }
+
+    public function store(Request $request) {
+
+      //$users =  DB::select('select * from users');
+
+      DB::beginTransaction();
+
+      try { 
+        
+        $user = User::create([
+          'name' => $request->name,
+          'email' => $request->email,
+          'password' => Hash::make($request->password)
+        ]);
+  
+        //throw new \ErrorException('Error found');
+
+        Post::create([
+          'title' => $request->title,
+          'description' => $request->description,
+          'user_id'  => $user->id 
+        ]);
+
+        DB::commit();
+
+      } catch(\Exception $e) {
+
+        DB::rollBack();
+
+        return back()->with('error','Something went wrong'); 
+
+      }
+      return back()->with('success','User/Post created successfully');    
+
+    }
+
 }

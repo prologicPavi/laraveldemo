@@ -8,9 +8,12 @@ use App\Http\Controllers\ProductController;
 
 
 
+Route::get('/',function(){
+    return view('welcome');
+});
 
-Route::get('/',[Homecontroller::class,'index']);
-
+//Route::get('/',[Homecontroller::class,'index']);
+Route::post('/user',[Homecontroller::class,'store'])->name('user.store');
 
 
 
@@ -48,3 +51,7 @@ Route::post('/product',[ProductController::class,'store'])->name('product.store'
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
