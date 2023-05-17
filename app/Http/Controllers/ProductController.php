@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Traits\StripeTrait;
+use App\Http\Requests\StoreProduct;
 
 class ProductController extends Controller
 {
+    use StripeTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+       
        return view('product.create');
     }
 
@@ -33,13 +38,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
-        $data = $request->validate([
-            'test' => 'required|max:5'
-        ]);
+        $validated = $request->validated();  
 
-        Product::create($data);
+        Product::create($validated);
+
+        return back();
         
     }
 

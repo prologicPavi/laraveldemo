@@ -3,18 +3,14 @@
 <head>
     @include('layout.head')
 </head>
-<body>
+<body class="hold-transition login-page">
+     
 
-    @include('layout.header')
-
-    <div class="container">
+    @include('layout.header')  
 
         @section('content')
         @show
-        
-    </div>
-    
-    
+         
 
     @include('layout.footer')
     
