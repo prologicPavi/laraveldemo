@@ -14,6 +14,9 @@ Route::get('/',function(){
 
 //Route::get('/',[Homecontroller::class,'index']);
 Route::post('/user',[Homecontroller::class,'store'])->name('user.store');
+Route::get('/ajaxrequest',[Homecontroller::class,'ajaxreq']);
+Route::post('/ajaxrequest',[Homecontroller::class,'ajaxstore'])->name('ajaxrequest.store');
+Route::get('/fetchcat',[Homecontroller::class,'fetchcat'])->name('ajaxrequest.fetch');
 
 
 

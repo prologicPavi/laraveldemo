@@ -91,4 +91,23 @@ class Homecontroller extends Controller
 
     }
 
+
+    public function ajaxreq() {
+      $categories = Category::all();
+
+      return view('sample',compact('categories'));
+    }
+
+    public function ajaxstore() {
+      return 'success';
+    }
+
+
+    public function fetchcat(Request $request) {
+      
+      $cat_post = Category::with('posts')->findOrFail($request->id)->toArray();
+
+      return $cat_post['posts'];
+    }
+
 }
