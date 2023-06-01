@@ -12,7 +12,7 @@ use App\Models\ {
 };
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 
 class Homecontroller extends Controller
 {
@@ -54,6 +54,17 @@ class Homecontroller extends Controller
 
       return view('user.create');
 
+    }
+
+    public function resume() {
+      
+      $user = User::latest()->first()->toArray();
+
+      $pdf = PDF::loadView('user.resume', $user);
+
+      return $pdf->stream('resume.pdf');
+       
+      
     }
 
     public function store(Request $request) {

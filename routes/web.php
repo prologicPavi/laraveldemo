@@ -19,7 +19,7 @@ Route::post('/ajaxrequest',[Homecontroller::class,'ajaxstore'])->name('ajaxreque
 Route::get('/fetchcat',[Homecontroller::class,'fetchcat'])->name('ajaxrequest.fetch');
 
 
-
+Route::get('/resume', [Homecontroller::class, 'resume']);
 
 
 
